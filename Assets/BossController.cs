@@ -6,8 +6,7 @@ public class BossController : MonoBehaviour {
 
     public int hp = 100;
 
-    public GameObject ExploadObj;
-    public GameObject ExploadPos;
+    private bool collision = true;
 
     // Use this for initialization
     void Start () {
@@ -15,9 +14,15 @@ public class BossController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-        if(hp == 0)
+	void Update ()
+    {
+
+        if (collision)
+        {
+            GetComponent<Animation>().Play("walk");
+        }
+
+        if (hp == 0)
         {
             Destroy(gameObject);
         }
@@ -28,8 +33,26 @@ public class BossController : MonoBehaviour {
         if(other.gameObject.tag == "BulletTag")
         {
             hp -= 1;
-            Instantiate(ExploadObj, ExploadPos.transform.position, Quaternion.identity);
+        }
 
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+
+        if (other.gameObject.tag == "PlayerTag")
+        {
+            collision = false;
+            GetComponent<Animation>().Play("hit2");
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+
+        if (other.gameObject.tag == "PlayerTag")
+        {
+            collision = true;
         }
     }
 }

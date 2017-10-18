@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da4e5d6c515e354eac1313590b602ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExploadObj: {fileID: 120972, guid: 866a4ac022f2a8e46b9f482d65401a64, type: 2}
+  ExploadObj: {fileID: 1509596217518394, guid: f4ac51af5cb74144abd02e5290a5afa7, type: 2}
   ExploadPos: {fileID: 1988653403343894}
 --- !u!135 &135205139334259448
 SphereCollider:

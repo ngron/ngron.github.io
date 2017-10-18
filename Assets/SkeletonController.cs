@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkeletonController : MonoBehaviour {
 
-    private Animator anim;
+    public Animator anim;
     public int hp = 50;
 	// Use this for initialization
 	void Start () {
@@ -31,24 +31,17 @@ public class SkeletonController : MonoBehaviour {
             hp -= 1;
     
         }
-        //if (other.gameObject.tag == "PlayerTag")
-        //{
-        //    anim.SetBool("Attack", true);
-        //}
-    }
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Debug.Log(hit.gameObject.tag);
-        if (hit.gameObject.tag == "PlayerTag")
+        if (other.gameObject.tag == "PlayerTag")
         {
             anim.SetBool("Attack", true);
         }
     }
-    void OnCollisionExit(Collision other)
+
+    void OncollisionExit(Collision other)
     {
-        if(other.gameObject.tag == "PlayerTag")
+        if (other.gameObject.tag == "playertag")
         {
-            anim.SetBool("Attack", false);
+            anim.SetBool("attack", false);
         }
     }
 
