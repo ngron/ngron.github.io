@@ -24,24 +24,31 @@ public class SkeletonController : MonoBehaviour {
 	}
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.tag);
-    
+       
+
         if (other.gameObject.tag == "BulletTag")
         {
             hp -= 1;
-    
+
         }
+        
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        Debug.Log(other.gameObject.tag);
+
         if (other.gameObject.tag == "PlayerTag")
         {
             anim.SetBool("Attack", true);
         }
     }
 
-    void OncollisionExit(Collision other)
+    void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.tag == "playertag")
+        if (other.gameObject.tag == "PlayerTag")
         {
-            anim.SetBool("attack", false);
+            anim.SetBool("Attack", false);
         }
     }
 

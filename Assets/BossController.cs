@@ -17,9 +17,13 @@ public class BossController : MonoBehaviour {
 	void Update ()
     {
 
-        if (collision)
+        if (collision == true)
         {
             GetComponent<Animation>().Play("walk");
+        }
+        if(collision == false)
+        {
+            GetComponent<Animation>().Play("hit2");
         }
 
         if (hp == 0)
@@ -43,7 +47,7 @@ public class BossController : MonoBehaviour {
         if (other.gameObject.tag == "PlayerTag")
         {
             collision = false;
-            GetComponent<Animation>().Play("hit2");
+ 
         }
     }
 

@@ -6,22 +6,23 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody myRigidbody;
 
-    private float speed = 5.0f;
+    private float speed = 50.0f;
 
-    //public int hp = 10;
+    public int hp = 10000;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         myRigidbody = GetComponent<Rigidbody>();
 	}
 
     // Update is called once per frame
     void Update() {
 
-        //if(hp == 0)
-        //{
-        //    Destroy(gameObject);
-        //}
+        if (hp == 0)
+        {
+            //GameOverを表示
+
+        }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -46,11 +47,11 @@ public class PlayerController : MonoBehaviour {
     {
         if(other.gameObject.tag == "SkeletonTag")
         {
-            //hp -= 1;
+            hp -= 1;
         }
-        if(other.gameObject.tag == "BossTag")
+        if (other.gameObject.tag == "BossTag")
         {
-            //hp -= 2;
+            hp -= 2;
         }
     }
 }
