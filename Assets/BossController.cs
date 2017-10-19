@@ -6,7 +6,10 @@ public class BossController : MonoBehaviour {
 
     public int hp = 100;
 
-    private bool collision = true;
+    private bool collision = false;
+
+    public GameObject ExploadObj;
+    public GameObject ExploadPos;
 
     // Use this for initialization
     void Start () {
@@ -16,19 +19,28 @@ public class BossController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
-        if (collision == true)
+        //常に歩く
+        if (collision == false)
         {
             GetComponent<Animation>().Play("walk");
         }
-        if(collision == false)
+        //触れている間は攻撃
+        if(collision == true)
         {
             GetComponent<Animation>().Play("hit2");
         }
-
+        //hpが0になったら
         if (hp == 0)
         {
-            Destroy(gameObject);
+            //UIControllerのメソッドにあるスコアに100を渡してあげる
+            GameObject uiController = GameObject.Find("UIController");
+            uiController.GetComponent<UIController>().SumScore(100);
+
+            //爆発して
+            Instantiate(ExploadObj, ExploadPos.transform.position, Quaternion.identity);
+            //消える
+            Destroy(this.gameObject);
+
         }
 	}
 
@@ -46,7 +58,7 @@ public class BossController : MonoBehaviour {
 
         if (other.gameObject.tag == "PlayerTag")
         {
-            collision = false;
+            collision = true;
  
         }
     }
@@ -56,7 +68,7 @@ public class BossController : MonoBehaviour {
 
         if (other.gameObject.tag == "PlayerTag")
         {
-            collision = true;
+            collision = false;
         }
     }
 }

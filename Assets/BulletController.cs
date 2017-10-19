@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
 
-    public GameObject ExploadObj;
-    public GameObject ExploadPos;
+    //public GameObject ExploadObj;
+    //public GameObject ExploadPos;
     // Use this for initialization
     void Start () {
      
@@ -21,9 +21,8 @@ public class BulletController : MonoBehaviour {
         if (other.gameObject.tag == "SkeletonTag" || other.gameObject.tag == "BossTag")
         {
 
-            //GetComponent<ParticleSystem>().Play();
+            GetComponent<ParticleSystem>().Play();
 
-            Instantiate(ExploadObj, ExploadPos.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         else

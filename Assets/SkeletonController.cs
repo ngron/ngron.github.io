@@ -6,8 +6,12 @@ public class SkeletonController : MonoBehaviour {
 
     public Animator anim;
     public int hp = 50;
-	// Use this for initialization
-	void Start () {
+
+    public GameObject ExploadObj;
+    public GameObject ExploadPos;
+
+    // Use this for initialization
+    void Start () {
 
         anim = GetComponent<Animator>();
     }
@@ -15,17 +19,27 @@ public class SkeletonController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-       
-
+       //HPが0になったら
         if(hp == 0)
         {
-            Destroy(gameObject);
+            //UIControllerのメソッドにあるスコアに50を渡してあげる
+            GameObject uiController = GameObject.Find("UIController");
+
+            uiController.GetComponent<UIController>().SumScore(50);
+
+            //爆発して
+            Instantiate(ExploadObj, ExploadPos.transform.position, Quaternion.identity);
+            //消える
+            Destroy(this.gameObject);
+
         }
 	}
+
+ 
     void OnCollisionEnter(Collision other)
     {
        
-
+        //ボールに当たったらhpが1減る
         if (other.gameObject.tag == "BulletTag")
         {
             hp -= 1;
@@ -34,6 +48,7 @@ public class SkeletonController : MonoBehaviour {
         
     }
 
+　　//プレイヤーに当たっている間のアニメーションの処理
     private void OnCollisionStay(Collision other)
     {
         Debug.Log(other.gameObject.tag);
@@ -43,7 +58,7 @@ public class SkeletonController : MonoBehaviour {
             anim.SetBool("Attack", true);
         }
     }
-
+    //プレイヤーから出てった時のアニメーションの処理
     void OnCollisionExit(Collision other)
     {
         if (other.gameObject.tag == "PlayerTag")

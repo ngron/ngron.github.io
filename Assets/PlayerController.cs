@@ -1,26 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
     Rigidbody myRigidbody;
 
-    private float speed = 50.0f;
+    private float speed = 30.0f;
 
-    public int hp = 10000;
+    public int hp = 100;
+    
 
     // Use this for initialization
     void Start () {
         myRigidbody = GetComponent<Rigidbody>();
-	}
+
+
+    }
 
     // Update is called once per frame
     void Update() {
 
         if (hp == 0)
         {
-            //GameOverを表示
+            //UIControllerからGameOVer関数を呼び出す
+            GameObject uiController = GameObject.Find("UIController");
+
+            uiController.GetComponent<UIController>().GameOver();
 
         }
 
@@ -48,6 +56,7 @@ public class PlayerController : MonoBehaviour {
         if(other.gameObject.tag == "SkeletonTag")
         {
             hp -= 1;
+            
         }
         if (other.gameObject.tag == "BossTag")
         {
