@@ -8,7 +8,8 @@ public class BulletController : MonoBehaviour {
     //public GameObject ExploadPos;
     // Use this for initialization
     void Start () {
-     
+
+        Invoke("DelayMethod", 0.5f);
 	}
 	
 	// Update is called once per frame
@@ -23,12 +24,16 @@ public class BulletController : MonoBehaviour {
 
             GetComponent<ParticleSystem>().Play();
 
-            Destroy(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }       
+    }
 
+    //オブジェクトを消す
+    void DelayMethod()
+    {
+        Destroy(gameObject);
     }
 }

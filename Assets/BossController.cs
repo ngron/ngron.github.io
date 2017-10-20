@@ -29,19 +29,7 @@ public class BossController : MonoBehaviour {
         {
             GetComponent<Animation>().Play("hit2");
         }
-        //hpが0になったら
-        if (hp == 0)
-        {
-            //UIControllerのメソッドにあるスコアに100を渡してあげる
-            GameObject uiController = GameObject.Find("UIController");
-            uiController.GetComponent<UIController>().SumScore(100);
-
-            //爆発して
-            Instantiate(ExploadObj, ExploadPos.transform.position, Quaternion.identity);
-            //消える
-            Destroy(this.gameObject);
-
-        }
+       
 	}
 
     void OnCollisionEnter(Collision other)
@@ -49,6 +37,23 @@ public class BossController : MonoBehaviour {
         if(other.gameObject.tag == "BulletTag")
         {
             hp -= 1;
+            //hpが0になったら
+            if (hp == 0)
+            {
+                //UIControllerのメソッドにあるスコアに500を渡してあげる
+                GameObject uiController = GameObject.Find("UIController");
+                uiController.GetComponent<UIController>().SumScore(500);
+
+                //爆発音が鳴って
+                GameObject audioController = GameObject.Find("Explosion");
+
+                audioController.GetComponent<AudioController>().AudioCall();
+                //爆発して
+                Instantiate(ExploadObj, ExploadPos.transform.position, Quaternion.identity);
+                //消える
+                Destroy(this.gameObject);
+
+            }
         }
 
     }

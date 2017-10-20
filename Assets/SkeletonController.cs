@@ -10,6 +10,8 @@ public class SkeletonController : MonoBehaviour {
     public GameObject ExploadObj;
     public GameObject ExploadPos;
 
+    GameObject enemyGenerator;
+
     // Use this for initialization
     void Start () {
 
@@ -19,21 +21,9 @@ public class SkeletonController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-       //HPが0になったら
-        if(hp == 0)
-        {
-            //UIControllerのメソッドにあるスコアに50を渡してあげる
-            GameObject uiController = GameObject.Find("UIController");
+       
 
-            uiController.GetComponent<UIController>().SumScore(50);
-
-            //爆発して
-            Instantiate(ExploadObj, ExploadPos.transform.position, Quaternion.identity);
-            //消える
-            Destroy(this.gameObject);
-
-        }
-	}
+    }
 
  
     void OnCollisionEnter(Collision other)
@@ -43,7 +33,27 @@ public class SkeletonController : MonoBehaviour {
         if (other.gameObject.tag == "BulletTag")
         {
             hp -= 1;
+            //HPが0になったら
+            if (hp == 0)
+            {
+                //UIControllerのメソッドにあるスコアに50を渡してあげる
+                GameObject uiController = GameObject.Find("UIController");
 
+                uiController.GetComponent<UIController>().SumScore(50);
+
+                //爆発音が鳴って
+                GameObject audioController = GameObject.Find("Explosion");
+
+                audioController.GetComponent<AudioController>().AudioCall();
+
+                //爆発して
+                Instantiate(ExploadObj, ExploadPos.transform.position, Quaternion.identity);
+
+                //消える
+                Destroy(gameObject);
+                //Invoke("DelayMethod", 0.5f);
+
+            }
         }
         
     }
@@ -66,5 +76,10 @@ public class SkeletonController : MonoBehaviour {
             anim.SetBool("Attack", false);
         }
     }
+
+    //void DelayMethod()
+    //{
+    //    Destroy(gameObject);
+    //}
 
 }

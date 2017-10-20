@@ -13,6 +13,9 @@ public class UIController : MonoBehaviour {
 
     GameObject hpGauge;
 
+    GameObject timeText;
+
+
     private int sumScore = 0;
 
 	// Use this for initialization
@@ -24,13 +27,15 @@ public class UIController : MonoBehaviour {
 
         scoreText = GameObject.Find("ScoreText");
 
-        scoreText.GetComponent<Text>().text = "ScoreText" + sumScore;
+        timeText = GameObject.Find("TimeText");
+       
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-      
+        scoreText.GetComponent<Text>().text = "Score:" + sumScore;
+
 
     }
 
@@ -51,13 +56,11 @@ public class UIController : MonoBehaviour {
     {
         //GameOverを表示
         gameOverText.GetComponent<Text>().text = "GemaeOver";
-        if (Input.GetMouseButtonDown(0))
-        {
-            //GameSceneを読み込む（追加
-            SceneManager.LoadScene("GameScene");
 
-        }
+    　　//時間もスコアも全部消す
+        Destroy(timeText);
 
+        Destroy(scoreText);
     }
 
     public void SumScore(int score)
@@ -65,5 +68,8 @@ public class UIController : MonoBehaviour {
         sumScore += score;
     }
    
-
+    public void DecreaseHp(float damage)
+    {
+        this.hpGauge.GetComponent<Image>().fillAmount -= damage;
+    }
 }

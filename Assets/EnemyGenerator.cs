@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 [System.Serializable]
 public class EGConfig
@@ -16,20 +18,36 @@ public class EGConfig
 public class EnemyGenerator : MonoBehaviour {
 
 
+    //public GameObject Player;
+
     private GameObject timeText;
 
     public List<EGConfig> configList;
 
     public float timeRemaining = 60f;
 
-
-
+    //TIME UPのテキスト
+    private GameObject timeUpText;
+    //GameOverのテキスト
+    private GameObject gameOverText;
+    //プレイヤを取得
+    GameObject player;
+    //タップしてゲーム再開
+    bool tap = false;
 
     // Use this for initialization
     void Start () {
 
+        //GameObject player = Instantiate(Player) as GameObject;
+        //player.transform.position = new Vector3(0, 3, 0);
+
         timeText = GameObject.Find("TimeText");
 
+        timeUpText = GameObject.Find("TimeUpText");
+
+        gameOverText = GameObject.Find("GameOverText");
+
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -64,20 +82,39 @@ public class EnemyGenerator : MonoBehaviour {
              }
 
         }
+        if(Input.GetMouseButtonDown(0) && tap)
+        {
+            //GameSceneを読み込む
+            SceneManager.LoadScene("GameScene");
+        }
 
+        //時間を引いていく
         timeRemaining -= Time.deltaTime;
 
-        if (timeRemaining < 0) return;
+        //時間を表示
         timeText.GetComponent<Text>().text = timeRemaining.ToString("F2"); //小数2桁にして表示
 
+        //0秒以下になった時
+        if (timeRemaining <= 0)
+        {
+        //TIME UPを表示
+            timeUpText.GetComponent<Text>().text = "TIME UP";
+           //時間を消す
+            Destroy(timeText);
+            //プレイヤを消す
+            Destroy(player);
+            //タップできるようになる
+            tap = true;
+        }
 
 
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
         //if (time <= 50)
         //{
         //    for (int i = 0; i < 10; i++)
