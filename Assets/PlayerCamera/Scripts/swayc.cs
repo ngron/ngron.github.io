@@ -29,11 +29,11 @@ public class swayc : MonoBehaviour {
 	
 	}
 	
-	void OnGUI()	
-	{
+	//void OnGUI()	
+	//{
 		
-		GUI.Label(new Rect(10,10,150,30),"Press 'R' to reload");
+	//	GUI.Label(new Rect(10,10,150,30),"Press 'R' to reload");
 		
 		
-	}
+	//}
 }

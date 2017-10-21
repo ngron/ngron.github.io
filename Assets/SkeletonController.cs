@@ -51,7 +51,6 @@ public class SkeletonController : MonoBehaviour {
 
                 //消える
                 Destroy(gameObject);
-                //Invoke("DelayMethod", 0.5f);
 
             }
         }
@@ -77,9 +76,5 @@ public class SkeletonController : MonoBehaviour {
         }
     }
 
-    //void DelayMethod()
-    //{
-    //    Destroy(gameObject);
-    //}
-
+   
 }

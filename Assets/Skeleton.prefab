@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   hp: 50
-  ExploadObj: {fileID: 1509596217518394, guid: f4ac51af5cb74144abd02e5290a5afa7, type: 2}
+  ExploadObj: {fileID: 1313702675055424, guid: fd60682fdcc86b843a06136f2cb00285, type: 2}
   ExploadPos: {fileID: 1747797245718692}
 --- !u!114 &114431384252570240
 MonoBehaviour:

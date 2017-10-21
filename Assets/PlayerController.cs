@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour {
 
     public int hp = 100;
 
-    public float speed = 30.0f;
+    public float speed = 0.1f;
+
+    public Camera playerCamera;
 
     Rigidbody myRigidbody;
 
@@ -21,11 +23,14 @@ public class PlayerController : MonoBehaviour {
 
         myRigidbody = GetComponent<Rigidbody>();
 
+        
       
     }
 
     // Update is called once per frame
     void Update() {
+
+      
 
         if (Input.GetButtonDown("Fire1") && tap)
         {
@@ -34,23 +39,31 @@ public class PlayerController : MonoBehaviour {
 
         }
 
+        //上↑
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            myRigidbody.AddForce(transform.forward * speed);
+            transform.Translate(transform.forward * 1);
+            //myRigidbody.AddForce(transform.forward * speed);
         }
-        //if (Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    myRigidbody.AddForce(0,0,-speed);
-        //}
-        //if (Input.GetKey(KeyCode.LeftArrow))
-           
-        //{
-        //    myRigidbody.AddForce(-speed, 0, 0);
-        //}
-        //if (Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    myRigidbody.AddForce(speed, 0, 0);
-        //}
+        //下↓
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(transform.forward * -1);
+            //myRigidbody.AddForce(transform.forward * -speed);
+        }
+        //左←
+        if (Input.GetKey(KeyCode.LeftArrow))
+
+        {
+            transform.Translate(transform.right * -1);
+            //myRigidbody.AddForce(transform.right * -speed);
+        }
+        //右→
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.translate(transform.right * 1);
+            //myRigidbody.AddForce(transform.right * speed);
+        }
     }
 
     private void OnCollisionStay(Collision other)
@@ -82,15 +95,16 @@ public class PlayerController : MonoBehaviour {
             uiController.GetComponent<UIController>().DecreaseHp(0.002f);
         }
 
-        //if (hp == 0)
-        //{
-        //    //UIControllerからGameOVer関数を呼び出す
-        //    GameObject uiController = GameObject.Find("UIController");
 
-        //    uiController.GetComponent<UIController>().GameOver();
+            //if (hp == 0)
+            //{
+            //    //UIControllerからGameOVer関数を呼び出す
+            //    GameObject uiController = GameObject.Find("UIController");
 
-        //    tap = true;
-            
-        //}
-    }
+            //    uiController.GetComponent<UIController>().GameOver();
+
+            //    tap = true;
+
+            //}
+        }
 }

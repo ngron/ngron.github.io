@@ -55,7 +55,7 @@ public class UIController : MonoBehaviour {
     public void GameOver()
     {
         //GameOverを表示
-        gameOverText.GetComponent<Text>().text = "GemaeOver";
+        gameOverText.GetComponent<Text>().text = "GameOver";
 
     　　//時間もスコアも全部消す
         Destroy(timeText);
