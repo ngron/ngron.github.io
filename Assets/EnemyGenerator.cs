@@ -26,6 +26,7 @@ public class EnemyGenerator : MonoBehaviour {
 
     public float timeRemaining = 60f;
 
+
     //TIME UPのテキスト
     private GameObject timeUpText;
     //GameOverのテキスト
@@ -75,7 +76,7 @@ public class EnemyGenerator : MonoBehaviour {
                         //Debug.Log(builder.ToString());
                         
                         for (int i = 0; i < config.count; i++)
-                            Instantiate(config.prefab, new Vector3(Random.Range(-30,30), config.prefab.transform.position.y, Random.Range(-30,30)), config.prefab.transform.rotation);
+                            Instantiate(config.prefab, new Vector3(Random.Range(-40,40), config.prefab.transform.position.y, Random.Range(-40,40)), config.prefab.transform.rotation);
                         configList.Remove(config);
                         break;
                     }

@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e9f2b96a96fca4faf0cad4a3d3e136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 500
+  hp: 300
   ExploadObj: {fileID: 120972, guid: 866a4ac022f2a8e46b9f482d65401a64, type: 2}
   ExploadPos: {fileID: 1899667535803234}
 --- !u!137 &137902332836713924

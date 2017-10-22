@@ -42,26 +42,26 @@ public class PlayerController : MonoBehaviour {
         //上↑
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(transform.forward * 1);
+            transform.Translate(transform.forward * speed, Space.World);
             //myRigidbody.AddForce(transform.forward * speed);
         }
         //下↓
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(transform.forward * -1);
+            transform.Translate(transform.forward *- speed, Space.World);
             //myRigidbody.AddForce(transform.forward * -speed);
         }
         //左←
         if (Input.GetKey(KeyCode.LeftArrow))
 
         {
-            transform.Translate(transform.right * -1);
+            transform.Translate(transform.right * -speed, Space.World);
             //myRigidbody.AddForce(transform.right * -speed);
         }
         //右→
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.translate(transform.right * 1);
+            transform.Translate(transform.right * speed, Space.World);
             //myRigidbody.AddForce(transform.right * speed);
         }
     }
